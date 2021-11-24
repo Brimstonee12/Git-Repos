@@ -1,0 +1,5 @@
+.container {
+    height: 100%;
+    overflow: auto;
+    background: linear-gradient(#e66465, #9198e5);
+}
