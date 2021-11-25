@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HandleReposService } from '../../services/handle-repos.service';
+import { Repositories } from '../../types/Repositories';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-start-page',
   templateUrl: './start-page.component.html',
@@ -8,10 +10,16 @@ import { HandleReposService } from '../../services/handle-repos.service';
 export class StartPageComponent implements OnInit {
   searchName: string;
   errorMessage: string;
-  constructor(public handleReposService: HandleReposService) {}
+  constructor(
+    private handleReposService: HandleReposService,
+    private router: Router
+  ) {}
 
-  handleUserData(data) {
-    console.log('object :>> ',data);
+  private handleUserData(data: Repositories[]) {
+    this.errorMessage = '';
+    if (data) {
+      this.router.navigateByUrl(`ReposList/${this.searchName}`);
+    }
   }
 
   private handleErrorMessage(errorType: number) {
@@ -32,7 +40,7 @@ export class StartPageComponent implements OnInit {
     if (this.searchName) {
       this.handleReposService.getGitHubRepos(this.searchName);
       this.handleReposService.reposList$.subscribe(
-        (res) => this.handleUserData(res),
+        (res: Repositories[]) => this.handleUserData(res),
         (err) => this.handleErrorMessage(err.status)
       );
     } else {

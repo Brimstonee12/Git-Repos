@@ -7,19 +7,24 @@
 }
 
 .title {
-    color: white;
+    color: #fff;
 }
 
 .search-container {
     padding: 15px;
-    background: white;
+    background: #fff;
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
 }
 
 .search-button {
     margin-top: 20px;
     height: auto;
-    background: red;
-    color: white;
+    background: #3f00ff;
+    color: #fff;
+}
+
+.search-error {
+    font-size: 12px;
 }
