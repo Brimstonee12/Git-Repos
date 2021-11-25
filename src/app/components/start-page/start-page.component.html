@@ -1,1 +1,12 @@
-<p>start-page works!</p>
+<div class="container">
+    <h1 class="title">GitHub Repos</h1>
+    <div class="search-container">
+        <mat-form-field>
+            <input matInput placeholder="Type GitHub Nick" [(ngModel)]="searchName">
+            <mat-error *ngIf="errorMessage">
+               {{errorMessage}}
+            </mat-error>
+        </mat-form-field>
+        <button class="search-button" mat-raised-button (click)="handleSearchButton()">Search</button>
+    </div>
+</div>

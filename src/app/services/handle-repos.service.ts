@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HandleReposService {
-  //TUTAJ NA KONCU JESZCZE TRZEBA DAC "/${username}/repos"
+  reposList$: Observable<any>;
 
+  constructor(private http: HttpClient) {}
 
-  private githubReposApiUrl(username: string){
+  private githubReposApiUrl(username: string) {
     return `https://api.github.com/users/${username}/repos`;
   }
-    
-  constructor() {}
+
+  getGitHubRepos(username: string) {
+    this.reposList$ = this.http.get(this.githubReposApiUrl(username));
+  }
 }

@@ -1,0 +1,25 @@
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    color: white;
+}
+
+.search-container {
+    padding: 15px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-button {
+    margin-top: 20px;
+    height: auto;
+    background: red;
+    color: white;
+}
