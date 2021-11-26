@@ -17,4 +17,15 @@ export class HandleReposService {
   getGitHubRepos(username: string) {
     this.reposList$ = this.http.get<Repositories[]>(this.gitHubReposApiUrl(username));
   }
+
+  handleErrorMessage(errorType: number) {
+    switch (errorType) {
+      case 404:
+        return 'User Not Found';
+      case 0:
+        return 'Field cannot be empty';
+      case 500:
+        return 'Something went wrong :(';
+    }
+  }
 }

@@ -8,7 +8,11 @@
             <mat-form-field>
                 <input matInput placeholder="Type GitHub Nick" [(ngModel)]="searchName">
             </mat-form-field>
+            
             <button class="search-button" mat-raised-button (click)="handleSearchButton()">Search</button>
+            <mat-error class="search-error" *ngIf="errorMessage">
+                {{errorMessage}}
+            </mat-error>
         </div>
     </div>
 

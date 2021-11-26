@@ -15,6 +15,7 @@ export class ReposListComponent implements OnInit, OnDestroy {
   gitReposList: Repositories[] = [];
   displayedColumns: string[] = ['name', 'language', 'created_at'];
   userName: string;
+  errorMessage: string;
   paramsSubscription: Subscription;
   constructor(
     private router: Router,
@@ -49,9 +50,11 @@ export class ReposListComponent implements OnInit, OnDestroy {
             (this.searchName = '');
         },
         (err) => {
-          console.log('err2 :>> ', err);
+          this.errorMessage = this.handleReposService.handleErrorMessage(err.status);
         }
       );
+    } else {
+      this.errorMessage = this.handleReposService.handleErrorMessage(0);
     }
   }
 
