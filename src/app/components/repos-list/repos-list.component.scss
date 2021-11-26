@@ -1,3 +1,5 @@
+@import "../../../styles/styles.scss";
+
 .container {
     height: 100%;
     display: flex;
@@ -7,21 +9,20 @@
 
 .input-container {
     border-radius: 15px;
-    background: #fff;
+    background: $theme-color;
     padding: 15px;
     display: flex;
     align-items: center;
-}
-
-.search-button {
-    background: #3f00ff;
-    color: #fff;
+    button {
+        background: $button-theme;
+        color: $theme-color;
+    }
 }
 
 .list-container {
     height: 100%;
     border-radius: 15px;
-    background: #fff;
+    background: $theme-color;
     padding: 15px;
 }
 
@@ -31,16 +32,18 @@
 }
 
 .filter-button {
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(155,70,252,1) 100%);
+    background: $background-theme;
     border-radius: 15px;
     padding: 5px;
     cursor: pointer;
     display: flex;
-}
-
-.filter-title {
-    color: #fff;
-    font-size: 15px;
+    h4 {
+        color: $theme-color;
+        font-size: 15px;
+    }
+    img {
+        height: 30px;
+    }
 }
 
 .test {

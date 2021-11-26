@@ -1,27 +1,27 @@
+@import "../../../styles/styles.scss";
+
 .container {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-.title {
-    color: #fff;
+    h1 {
+        color: $theme-color;
+    }
 }
 
 .search-container {
     padding: 15px;
-    background: #fff;
+    background: $theme-color;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
-}
-
-.search-button {
-    margin-top: 20px;
-    background: #3f00ff;
-    color: #fff;
+    button{
+        margin-top: 20px;
+        background: $button-theme;
+        color: $theme-color;
+    }
 }
 
 .search-error {
