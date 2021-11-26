@@ -3,12 +3,12 @@
 .container {
     height: 100%;
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 
 .input-container {
     margin-bottom: 40px;
+    margin-top: 30%;
     border-radius: 15px;
     background: $theme-color;
     padding: 15px;
@@ -39,21 +39,15 @@
     padding: 15px;
     div {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-around;
     }
 }
 
-.filter-button {
-    background: $background-theme;
-    border-radius: 15px;
-    padding: 5px;
-    cursor: pointer;
-    display: flex;
-    h4 {
-        color: $theme-color;
-        font-size: 15px;
-    }
-    img {
-        height: 30px;
-    }
+.table-container {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.repos-table {
+    width: 100%;
 }

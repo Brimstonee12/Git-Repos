@@ -2,43 +2,40 @@
     <div class="input-container">
         <div class="title-container">
             <h2>GitHub NickName:</h2>
-            <h2>Brimstonee12</h2>
+            <h2>{{userName}}</h2>
         </div>
-
         <div>
             <mat-form-field>
                 <input matInput placeholder="Type GitHub Nick" [(ngModel)]="searchName">
             </mat-form-field>
             <button class="search-button" mat-raised-button (click)="handleSearchButton()">Search</button>
         </div>
-
     </div>
 
     <div class="list-container">
         <div>
-            <div class="filter-button">
-                <h4>Sort By Popularity</h4>
-                <img src="" />
-            </div>
+            <mat-slide-toggle>Sort By Name</mat-slide-toggle>
+            <mat-slide-toggle>Sort By Language</mat-slide-toggle>
+            <mat-slide-toggle>Slide me!</mat-slide-toggle>
         </div>
-        <div *ngIf="gitReposList">
-            <table  mat-table [dataSource]="gitReposList">
+        <div class="table-container">
+            <table class="repos-table" mat-table [dataSource]="gitReposList">
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="language">
-                    <th mat-header-cell *matHeaderCellDef> Language </th>
+                </ng-container>
+                <ng-container matColumnDef="language">
+                    <th mat-header-cell *matHeaderCellDef>Language</th>
                     <td mat-cell *matCellDef="let element"> {{element.language}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="created_at">
-                    <th mat-header-cell *matHeaderCellDef> Create Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
-                  </ng-container>
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
+                </ng-container>
+                <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef>Create Date</th>
+                    <td mat-cell *matCellDef="let element">{{element.created_at}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
         </div>
-        
+           
     </div>
 </div>

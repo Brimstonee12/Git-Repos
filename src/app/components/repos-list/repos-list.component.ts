@@ -23,11 +23,9 @@ export class ReposListComponent implements OnInit, OnDestroy {
   ) {}
 
   private getDataByUrlKey() {
-    if (this.gitReposList.length === 0) {
       this.paramsSubscription = this.route.paramMap.subscribe((param) => {
-        if (param) {
-          console.log('param.get[] :>> ', param.get('id'));
-          const parameter = param.get('id');
+        const parameter = param.get('id');
+        if (param && this.userName !== parameter) {
           this.handleReposService.getGitHubRepos(parameter);
           this.handleReposService.reposList$.subscribe((res) => {
             (this.userName = parameter),
@@ -38,18 +36,16 @@ export class ReposListComponent implements OnInit, OnDestroy {
           });
         }
       });
-    }
   }
 
   handleSearchButton() {
-    console.log('this.gitReposList :>> ', this.gitReposList);
     if (this.searchName) {
       this.handleReposService.getGitHubRepos(this.searchName);
       this.handleReposService.reposList$.subscribe(
         (res) => {
           (this.gitReposList = res),
+          (this.userName = this.searchName),
             this.router.navigateByUrl(`ReposList/${this.searchName}`),
-            (this.userName = this.searchName),
             (this.searchName = '');
         },
         (err) => {
@@ -60,11 +56,12 @@ export class ReposListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('init :>> ');
     this.getDataByUrlKey();
   }
 
   ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
   }
 }
