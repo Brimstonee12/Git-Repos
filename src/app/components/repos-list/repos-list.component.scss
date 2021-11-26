@@ -8,27 +8,39 @@
 }
 
 .input-container {
+    margin-bottom: 40px;
     border-radius: 15px;
     background: $theme-color;
     padding: 15px;
     display: flex;
     align-items: center;
-    button {
-        background: $button-theme;
-        color: $theme-color;
+    justify-content: space-between;
+
+}
+
+.title-container {
+    display: flex;
+    h2 {
+        color: $content-font-color;
+        font-size: 20px;
+        margin: 0 6px 0 0;
     }
 }
 
+.search-button {
+    margin-left: 15px;
+    background: $button-theme;
+    color: $theme-color;
+}
+
 .list-container {
-    height: 100%;
     border-radius: 15px;
     background: $theme-color;
     padding: 15px;
-}
-
-.filter-container {
-    display: flex;
-    justify-content: flex-end;
+    div {
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 
 .filter-button {
@@ -44,9 +56,4 @@
     img {
         height: 30px;
     }
-}
-
-.test {
-    height: 100%;
-    background: white;
 }
