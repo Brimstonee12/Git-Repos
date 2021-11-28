@@ -1,0 +1,13 @@
+@import "../styles/styles.scss";
+
+.container {
+    height: 100%;
+    overflow: auto;
+    background: $background-theme;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 60%;
+}

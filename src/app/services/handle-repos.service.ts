@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Repositories } from "../types/Repositories";
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -18,5 +16,16 @@ export class HandleReposService {
 
   getGitHubRepos(username: string) {
     this.reposList$ = this.http.get<Repositories[]>(this.gitHubReposApiUrl(username));
+  }
+
+  handleErrorMessage(errorType: number) {
+    switch (errorType) {
+      case 404:
+        return 'User Not Found';
+      case 0:
+        return 'Field cannot be empty';
+      case 500:
+        return 'Something went wrong :(';
+    }
   }
 }

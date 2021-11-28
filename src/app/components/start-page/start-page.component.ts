@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-start-page',
   templateUrl: './start-page.component.html',
-  styleUrls: ['./start-page.component.css'],
+  styleUrls: ['./start-page.component.scss'],
 })
 export class StartPageComponent implements OnInit {
   searchName: string;
@@ -22,29 +22,15 @@ export class StartPageComponent implements OnInit {
     }
   }
 
-  private handleErrorMessage(errorType: number) {
-    switch (errorType) {
-      case 404:
-        this.errorMessage = 'User Not Found';
-        break;
-      case 0:
-        this.errorMessage = 'Field cannot be empty';
-        break;
-      case 500:
-        this.errorMessage = 'Something went wrong :(';
-        break;
-    }
-  }
-
   handleSearchButton() {
     if (this.searchName) {
       this.handleReposService.getGitHubRepos(this.searchName);
       this.handleReposService.reposList$.subscribe(
         (res: Repositories[]) => this.handleUserData(res),
-        (err) => this.handleErrorMessage(err.status)
+        (err) => this.errorMessage = this.handleReposService.handleErrorMessage(err.status)
       );
     } else {
-      this.handleErrorMessage(0);
+      this.errorMessage = this.handleReposService.handleErrorMessage(0);
     }
   }
   ngOnInit(): void {}

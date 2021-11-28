@@ -1,0 +1,60 @@
+@import "../../../styles/styles.scss";
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    margin-bottom: 40px;
+    margin-top: 30%;
+    border-radius: 15px;
+    background: $theme-color;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.title-container {
+    display: flex;
+    h2 {
+        color: $content-font-color;
+        font-size: 20px;
+        margin: 0 6px 0 0;
+    }
+}
+
+.search-button {
+    margin-left: 15px;
+    background: $button-theme;
+    color: $theme-color;
+}
+
+.list-container {
+    border-radius: 15px;
+    background: $theme-color;
+    padding: 15px;
+    div {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.table-container {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.repos-table {
+    width: 100%;
+}
+.mat-form-field {
+    padding: 0 !important;
+}
+.search-error {
+    font-size: 12px;
+    margin: 0;
+}
