@@ -1,12 +1,18 @@
 <div class="container">
     <h1>GitHub Repos</h1>
     <div class="search-container">
-        <mat-form-field>
-            <input matInput placeholder="Type GitHub Nick" [(ngModel)]="searchName">
-        </mat-form-field>
-        <mat-error class="search-error" *ngIf="errorMessage">
-            {{errorMessage}}
-        </mat-error>
-        <button mat-raised-button (click)="handleSearchButton()">Search</button>
+        <div class="search-content" *ngIf="!handleReposService.isListLoading else loading">
+            <mat-form-field>
+                <input matInput placeholder="Type GitHub Nick" [(ngModel)]="searchName">
+            </mat-form-field>
+            <mat-error class="search-error" *ngIf="errorMessage">
+                {{errorMessage}}
+            </mat-error>
+            <button mat-raised-button (click)="handleSearchButton()">Search</button>
+        </div>
+
+        <ng-template #loading>
+            <div class="loading-spinner"></div>
+        </ng-template>
     </div>
 </div>

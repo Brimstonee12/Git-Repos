@@ -26,11 +26,11 @@ export class ReposListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'language', 'created_at'];
   userName: string;
   errorMessage: string;
-  paramsSubscription: Subscription;
+  private paramsSubscription: Subscription;
 
   constructor(
     private router: Router,
-    private handleReposService: HandleReposService,
+    public handleReposService: HandleReposService,
     private route: ActivatedRoute,
     private orderByValuePipe: OrderByValuePipe,
     private orderByDatePipe: OrderByDatePipe
@@ -41,15 +41,18 @@ export class ReposListComponent implements OnInit, OnDestroy {
       const parameter = param.get('id');
       if (param && this.userName !== parameter) {
         this.handleReposService.getGitHubRepos(parameter);
-        this.handleReposService.reposList$.subscribe((res) => {
-          (this.userName = parameter),
-            (this.gitReposList = res),
-            (err) => {
-              this.errorMessage = this.handleReposService.handleErrorMessage(
-                err.status
-              );
-            };
-        });
+        this.handleReposService.reposList$.subscribe(
+          (res) => {
+            (this.userName = parameter), (this.gitReposList = res),
+            this.handleReposService.isListLoading = false;
+          },
+          (err) => {
+            this.errorMessage = this.handleReposService.handleErrorMessage(
+              err.status
+            )
+            this.handleReposService.isListLoading = false;
+          }
+        );
       }
     });
   }
@@ -59,20 +62,28 @@ export class ReposListComponent implements OnInit, OnDestroy {
       this.handleReposService.getGitHubRepos(this.searchName);
       this.handleReposService.reposList$.subscribe(
         (res) => {
-          (this.gitReposList = res),
-            (this.userName = this.searchName),
-            this.router.navigateByUrl(`ReposList/${this.searchName}`),
-            (this.searchName = '');
+          this.changeConfigBySearchName(res);
         },
         (err) => {
           this.errorMessage = this.handleReposService.handleErrorMessage(
             err.status
-          );
+          )
+          this.handleReposService.isListLoading = false
+          this.gitReposList = []
         }
       );
     } else {
       this.errorMessage = this.handleReposService.handleErrorMessage(0);
     }
+  }
+
+  changeConfigBySearchName(searchList: Repositories[]) {
+    this.gitReposList = searchList;
+    this.userName = this.searchName;
+    this.router.navigateByUrl(`ReposList/${this.searchName}`);
+    this.errorMessage = '';
+    this.searchName = '';
+    this.handleReposService.isListLoading = false;
   }
 
   filterReposList(filter: string) {

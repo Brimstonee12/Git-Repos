@@ -37,24 +37,45 @@
     border-radius: 15px;
     background: $theme-color;
     padding: 15px;
-    div {
-        display: flex;
-        justify-content: flex-end;
-    }
+}
+
+.filter-container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .table-container {
     max-height: 400px;
+    min-height: 200px;
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .repos-table {
     width: 100%;
 }
+
 .mat-form-field {
     padding: 0 !important;
 }
+
 .search-error {
     font-size: 12px;
     margin: 0;
 }
+
+.loading-spinner {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #95999d;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

@@ -11,7 +11,7 @@ export class StartPageComponent implements OnInit {
   searchName: string;
   errorMessage: string;
   constructor(
-    private handleReposService: HandleReposService,
+    public handleReposService: HandleReposService,
     private router: Router
   ) {}
 
@@ -19,6 +19,7 @@ export class StartPageComponent implements OnInit {
     this.errorMessage = '';
     if (data) {
       this.router.navigateByUrl(`ReposList/${this.searchName}`);
+      this.handleReposService.isListLoading = false;
     }
   }
 
@@ -27,10 +28,13 @@ export class StartPageComponent implements OnInit {
       this.handleReposService.getGitHubRepos(this.searchName);
       this.handleReposService.reposList$.subscribe(
         (res: Repositories[]) => this.handleUserData(res),
-        (err) => this.errorMessage = this.handleReposService.handleErrorMessage(err.status)
+        (err) => {this.errorMessage = this.handleReposService.handleErrorMessage(err.status), 
+        this.handleReposService.isListLoading = false;
+        }
       );
     } else {
       this.errorMessage = this.handleReposService.handleErrorMessage(0);
+      this.handleReposService.isListLoading = false;
     }
   }
   ngOnInit(): void {}

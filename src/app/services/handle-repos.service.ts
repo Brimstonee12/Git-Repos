@@ -7,7 +7,7 @@ import { Repositories } from "../types/Repositories";
 })
 export class HandleReposService {
   reposList$: Observable<Repositories[]>;
-
+  isListLoading: boolean = false
   constructor(private http: HttpClient) {}
 
   private gitHubReposApiUrl(username: string) {
@@ -16,6 +16,7 @@ export class HandleReposService {
 
   getGitHubRepos(username: string) {
     this.reposList$ = this.http.get<Repositories[]>(this.gitHubReposApiUrl(username));
+    this.isListLoading = true
   }
 
   handleErrorMessage(errorType: number) {
