@@ -1,5 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
 @import "./colors.scss";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-form-field {
+    @media (max-width: 650px){
+        label {
+                font-size: 0.9rem !important;
+        }
+        input {
+                font-size: 0.9rem !important;
+        }
+        span {
+                font-size: 0.9rem !important;
+        }
+    }
+}
+
+@media (max-width: 650px){
+    .mat-form-field-flex {
+        height: 42px;
+}}
+
+.mat-raised-button {
+ @media (max-width: 650px){
+        font-size: 0.8rem;
+        padding: 0 14px;
+        }
+}
+
+.mat-cell {
+  @media (max-width: 650px){
+        font-size: 0.7rem;
+        padding: 0 7px 0 7px  !important;
+        }
+    }
+
+.mat-select { 
+    @media (max-width: 650px){
+        font-size: 0.8rem !important;
+}   
+}
+

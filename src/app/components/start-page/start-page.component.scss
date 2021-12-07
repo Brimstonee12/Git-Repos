@@ -8,6 +8,7 @@
     flex-direction: column;
     h1 {
         color: $theme-color;
+        font-size: 2rem;
     }
 }
 
@@ -21,7 +22,7 @@
 }
 
 .search-error {
-    font-size: 12px;
+    font-size: 0.8rem;
 }
 
 .search-content {
