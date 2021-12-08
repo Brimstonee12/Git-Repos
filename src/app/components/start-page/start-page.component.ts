@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HandleReposService } from '../../services/handle-repos.service';
 import { Repositories } from '../../types/Repositories';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-start-page',
   templateUrl: './start-page.component.html',
   styleUrls: ['./start-page.component.scss'],
 })
-export class StartPageComponent implements OnInit {
+export class StartPageComponent {
   searchName: string;
   errorMessage: string;
   constructor(
@@ -22,7 +23,7 @@ export class StartPageComponent implements OnInit {
       this.handleReposService.isListLoading = false;
     }
   }
-
+//to zostalo do CRKI
   handleSearchButton() {
     if (this.searchName) {
       this.handleReposService.getGitHubRepos(this.searchName);
@@ -37,5 +38,4 @@ export class StartPageComponent implements OnInit {
       this.handleReposService.isListLoading = false;
     }
   }
-  ngOnInit(): void {}
 }
